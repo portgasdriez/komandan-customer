@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: :sslmodule:@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/386cb04bc2455088eb7e28143801517a/transformed/jetified-sslmodule/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/386cb04bc2455088eb7e28143801517a/transformed/jetified-sslmodule/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/386cb04bc2455088eb7e28143801517a/transformed/jetified-sslmodule/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
