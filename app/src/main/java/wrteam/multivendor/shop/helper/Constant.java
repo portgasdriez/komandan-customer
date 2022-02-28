@@ -6,13 +6,13 @@ public class Constant {
     //MODIFICATION PART
 
   //Admin panel url
-  public static final String MainBaseUrl = "https://admin.panel.url/"; //Admin panel url with it whould be nessesary to put "/"(slash) at end of the url (https://admin.panel.url/)
+  public static final String MainBaseUrl = "https://komandancoop.com/"; //Admin panel url with it whould be nessesary to put "/"(slash) at end of the url (https://admin.panel.url/)
 
   //Admin panel url or ecart multivendor website url (if exist) url with it whould be nessesary to put "/"(slash) at end of the url (https://admin.panel.url/)
   public static final String WebSiteUrl = "https://admin.panel.or.website.url/";
 
     //set your jwt secret key here...key must same in PHP and Android
-    public static final String JWT_KEY = "set_jwt_key_here";
+    public static final String JWT_KEY = "komandan123";
 
     //Category View Number Of Grid Per Line
     public static final int GRID_COLUMN = 3;

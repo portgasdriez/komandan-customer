@@ -374,7 +374,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void UserLogin(String mobile, String password) {
-
         Map<String, String> params = new HashMap<>();
         params.put(Constant.LOGIN, Constant.GetVal);
         params.put(Constant.MOBILE, mobile);

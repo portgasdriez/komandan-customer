@@ -40,9 +40,12 @@ public class SplashActivity extends Activity {
         Uri data = this.getIntent().getData();
         if (data == null) {
             if (!session.getBoolean("is_first_time")) {
-                new Handler().postDelayed(() -> startActivity(new Intent(SplashActivity.this, WelcomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)), SPLASH_TIME_OUT);
+//                new Handler().postDelayed(() -> startActivity(new Intent(SplashActivity.this, WelcomeActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)), SPLASH_TIME_OUT);
+                new Handler().postDelayed(() -> startActivity(new Intent(SplashActivity.this, LoginActivity.class).putExtra("tracker", "").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)), SPLASH_TIME_OUT);
             } else {
                 new Handler().postDelayed(() -> startActivity(new Intent(SplashActivity.this, MainActivity.class).putExtra(Constant.FROM, "").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)), SPLASH_TIME_OUT);
+//                new Handler().postDelayed(() -> startActivity(new Intent(SplashActivity.this, LoginActivity.class).putExtra("tracker", "").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)), SPLASH_TIME_OUT);
+
             }
         } else if (data.isHierarchical()) {
             switch (data.getPath().split("/")[data.getPath().split("/").length - 2]) {
