@@ -161,6 +161,7 @@
     <string name="verify_message">Verify your registered number and reset your password. </string>
     <string name="alert_not_register_num1">Mobile number is not registered on </string>
     <string name="alert_not_register_num2">. Please register to continue. Return to Log In screen and select Sign Up.</string>
+    <string name="alert_register_email1">Email already registered with </string>
     <string name="alert_register_num1">Mobile number already registered with </string>
     <string name="alert_register_num2">. You can sign into account using your credentials.</string>
     <string name="reset_alert_msg">Are you sure, you want to reset password?\nAfter changed password session will be logout.</string>

@@ -3,6 +3,7 @@ package wrteam.multivendor.shop.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -215,6 +216,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         switch (from) {
+            case "splash":
+                if (!session.getBoolean(Constant.IS_USER_LOGIN)) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class).putExtra("tracker", "").addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                }
+                break;
             case "checkout":
                 bottomNavigationView.setVisibility(View.GONE);
                 ApiConfig.getCartItemCount(activity, session);

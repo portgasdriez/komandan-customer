@@ -35,7 +35,7 @@
         android:layout_below="@id/imgLogo"
         android:background="@drawable/login_curve"
         android:backgroundTint="@color/white"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,6 +69,23 @@
                     android:padding="@dimen/_7sdp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
             </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/transparent">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/edtLoginEmail"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:drawableStart="@drawable/ic_mail"-->
+<!--                    android:drawablePadding="@dimen/_10sdp"-->
+<!--                    android:hint="@string/email"-->
+<!--                    android:importantForAutofill="yes"-->
+<!--                    android:padding="@dimen/_7sdp"-->
+<!--                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <View
                 android:layout_width="match_parent"
@@ -194,46 +211,68 @@
                 android:orientation="horizontal"
                 android:weightSum="15">
 
-                <com.hbb20.CountryCodePicker
-                    android:id="@+id/edtCountryCodePicker"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="10"
-                    android:gravity="center_horizontal"
-                    android:visibility="visible"
-                    app:ccpDialog_showFastScroller="true"
-                    app:ccp_showArrow="false"
-                    app:ccp_showNameCode="false"
-                    app:ccp_textSize="@dimen/_10ssp" />
-
-                <TextView
-                    android:id="@+id/tvCountryCodePicker"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_weight="10"
-                    android:gravity="center"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="@dimen/_1sdp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:background="@color/gray" />
-
-
                 <EditText
-                    android:id="@+id/edtMobileVerify"
+                    android:id="@+id/edEmailVerify"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
                     android:background="@color/transparent"
-                    android:hint="@string/mobile"
+                    android:hint="@string/email"
                     android:importantForAutofill="yes"
-                    android:inputType="number|phone"
+                    android:inputType="textEmailAddress"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
             </LinearLayout>
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="@dimen/_25sdp"-->
+            <!--                android:layout_marginBottom="@dimen/_7sdp"-->
+            <!--                android:background="@color/transparent"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:weightSum="15">-->
+
+            <!--                <com.hbb20.CountryCodePicker-->
+            <!--                    android:id="@+id/edtCountryCodePicker"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_weight="10"-->
+            <!--                    android:gravity="center_horizontal"-->
+            <!--                    android:visibility="visible"-->
+            <!--                    app:ccpDialog_showFastScroller="true"-->
+            <!--                    app:ccp_showArrow="false"-->
+            <!--                    app:ccp_showNameCode="false"-->
+            <!--                    app:ccp_textSize="@dimen/_10ssp" />-->
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/tvCountryCodePicker"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="@dimen/_30sdp"-->
+            <!--                    android:layout_weight="10"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:visibility="gone" />-->
+
+            <!--                <View-->
+            <!--                    android:layout_width="@dimen/_1sdp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_marginStart="@dimen/_5sdp"-->
+            <!--                    android:layout_marginEnd="@dimen/_5sdp"-->
+            <!--                    android:background="@color/gray" />-->
+
+
+            <!--                <EditText-->
+            <!--                    android:id="@+id/edtMobileVerify"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_weight="5"-->
+            <!--                    android:background="@color/transparent"-->
+            <!--                    android:hint="@string/mobile"-->
+            <!--                    android:importantForAutofill="yes"-->
+            <!--                    android:inputType="number|phone"-->
+            <!--                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />-->
+
+            <!--            </LinearLayout>-->
 
             <View
                 android:layout_width="match_parent"
@@ -275,7 +314,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/_7sdp"
+                    android:layout_marginStart="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_7sdp"
                     android:layout_toEndOf="@id/img"
                     android:text="@string/resend"
                     android:textColor="@color/gray"
@@ -458,7 +500,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/tvMobile"
+                android:id="@+id/tvEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -509,6 +551,33 @@
                     android:drawableStart="@drawable/ic_mail"
                     android:drawablePadding="@dimen/_10sdp"
                     android:hint="@string/email"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/gray" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/transparent">
+
+                <EditText
+                    android:id="@+id/edtPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:hint="@string/phone_number"
                     android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     android:lines="1"

@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import androidx.appcompat.app.AlertDialog;
 
 import wrteam.multivendor.shop.R;
+import wrteam.multivendor.shop.activity.LoginActivity;
 import wrteam.multivendor.shop.activity.MainActivity;
 
 
@@ -122,10 +123,10 @@ public class Session {
 
             new Session(_activity).setBoolean("is_first_time", true);
 
-            Intent i = new Intent(activity, MainActivity.class);
+            Intent i = new Intent(activity, LoginActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            i.putExtra(Constant.FROM, "");
+            i.putExtra(Constant.FROM, "logout");
             activity.startActivity(i);
             activity.finish();
         });

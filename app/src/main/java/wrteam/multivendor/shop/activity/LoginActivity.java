@@ -65,11 +65,18 @@ import wrteam.multivendor.shop.ui.PinView;
 public class LoginActivity extends AppCompatActivity {
 
     RelativeLayout lytOTP;
-    EditText edtResetPass, edtResetCPass, edtRefer, imgLoginPassword, edtLoginMobile, edtName, edtEmail, edtPassword, edtConfirmPassword, edtMobileVerify;
+    EditText edtResetPass, edtResetCPass, edtRefer, imgLoginPassword,
+            edtLoginMobile,
+//                edtLoginEmail,
+            edtName, edtEmail, edtPassword, edtConfirmPassword,
+//            edtMobileVerify
+                edtPhone,
+                edEmailVerify;
     Button btnVerify;
-    CountryCodePicker edtCountryCodePicker;
+//    CountryCodePicker edtCountryCodePicker;
     PinView pinViewOTP;
-    TextView tvMobile, tvWelcome, tvTimer, tvResend, tvForgotPass, tvPrivacyPolicy;
+//    TextView tvMobile, tvWelcome, tvTimer, tvResend, tvForgotPass, tvPrivacyPolicy;
+    TextView tvEmail, tvWelcome, tvTimer, tvResend, tvForgotPass, tvPrivacyPolicy;
     ScrollView lytLogin, lytSignUp, lytVerify, lytResetPass;
     Session session;
     Toolbar toolbar;
@@ -89,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout lytWebView;
     WebView webView;
     String from, mobile, countryCode;
+//    String from, email, countryCode;
     ProgressDialog dialog;
     boolean forMultipleCountryUse = true;
 
@@ -114,22 +122,28 @@ public class LoginActivity extends AppCompatActivity {
 
         chPrivacy = findViewById(R.id.chPrivacy);
         tvWelcome = findViewById(R.id.tvWelcome);
-        edtCountryCodePicker = findViewById(R.id.edtCountryCodePicker);
+//        edtCountryCodePicker = findViewById(R.id.edtCountryCodePicker);
         edtResetPass = findViewById(R.id.edtResetPass);
         edtResetCPass = findViewById(R.id.edtResetCPass);
         imgLoginPassword = findViewById(R.id.imgLoginPassword);
         edtLoginMobile = findViewById(R.id.edtLoginMobile);
+//        edtLoginEmail = findViewById(R.id.edtLoginEmail);
+
+
         lytLogin = findViewById(R.id.lytLogin);
         lytResetPass = findViewById(R.id.lytResetPass);
         lytOTP = findViewById(R.id.lytOTP);
         pinViewOTP = findViewById(R.id.pinViewOTP);
         btnVerify = findViewById(R.id.btnVerify);
-        edtMobileVerify = findViewById(R.id.edtMobileVerify);
+//        edtMobileVerify = findViewById(R.id.edtMobileVerify);
+        edtPhone = findViewById(R.id.edtPhone);
+        edEmailVerify = findViewById(R.id.edEmailVerify);
         lytVerify = findViewById(R.id.lytVerify);
         lytSignUp = findViewById(R.id.lytSignUp);
         edtName = findViewById(R.id.edtName);
         edtEmail = findViewById(R.id.edtEmail);
-        tvMobile = findViewById(R.id.tvMobile);
+//        tvMobile = findViewById(R.id.tvMobile);
+        tvEmail = findViewById(R.id.tvEmail);
         edtPassword = findViewById(R.id.edtPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
         edtRefer = findViewById(R.id.edtRefer);
@@ -143,6 +157,7 @@ public class LoginActivity extends AppCompatActivity {
 
         tvForgotPass.setText(underlineSpannable(getString(R.string.forgot_text)));
         edtLoginMobile.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_phone, 0, 0, 0);
+//        edtLoginEmail.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_mail, 0, 0, 0);
 
         imgLoginPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pass, 0, R.drawable.ic_show, 0);
         edtPassword.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pass, 0, R.drawable.ic_show, 0);
@@ -165,23 +180,32 @@ public class LoginActivity extends AppCompatActivity {
 
         tvWelcome.setText(getString(R.string.welcome) + getString(R.string.app_name));
 
-        edtCountryCodePicker.setCountryForNameCode("IN");
+//        edtCountryCodePicker.setCountryForNameCode("IN");
         forMultipleCountryUse = false;
 
         if (from != null) {
             switch (from) {
                 case "drawer":
                 case "checkout":
+                case "logout":
+                    lytLogin.setVisibility(View.VISIBLE);
+                    lytLogin.startAnimation(animShow);
+                    new Handler().postDelayed(() -> edtLoginMobile.requestFocus(), 1500);
+//                    new Handler().postDelayed(() -> edtLoginEmail.requestFocus(), 1500);
+                    break;
                 case "tracker":
                     lytLogin.setVisibility(View.VISIBLE);
                     lytLogin.startAnimation(animShow);
                     new Handler().postDelayed(() -> edtLoginMobile.requestFocus(), 1500);
+//                    new Handler().postDelayed(() -> edtLoginEmail.requestFocus(), 1500);
                     break;
                 case "refer":
                     otpFor = "new_user";
-                    lytVerify.setVisibility(View.VISIBLE);
+                    lytVerify.setVisibility(View.GONE);
+                    lytSignUp.setVisibility(View.VISIBLE);
                     lytVerify.startAnimation(animShow);
-                    new Handler().postDelayed(() -> edtMobileVerify.requestFocus(), 1500);
+//                    new Handler().postDelayed(() -> edtMobileVerify.requestFocus(), 1500);
+                    new Handler().postDelayed(() -> edEmailVerify.requestFocus(), 1500);
                     break;
                 default:
                     lytVerify.setVisibility(View.GONE);
@@ -189,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
                     lytVerify.setVisibility(View.GONE);
                     lytLogin.setVisibility(View.GONE);
                     lytSignUp.setVisibility(View.VISIBLE);
-                    tvMobile.setText(mobile);
+                    tvEmail.setText(mobile);
                     edtRefer.setText(Constant.FRIEND_CODE);
                     break;
             }
@@ -201,143 +225,143 @@ public class LoginActivity extends AppCompatActivity {
             lytLogin.setVisibility(View.VISIBLE);
             lytSignUp.setVisibility(View.GONE);
         }
-        StartFirebaseLogin();
+//        StartFirebaseLogin();
         PrivacyPolicy();
 
     }
 
-    public void generateOTP() {
-        dialog = ProgressDialog.show(activity, "", getString(R.string.please_wait), true);
-        session.setData(Constant.COUNTRY_CODE, countryCode);
-        Map<String, String> params = new HashMap<>();
-        params.put(Constant.TYPE, Constant.VERIFY_USER);
-        params.put(Constant.MOBILE, mobile);
-        ApiConfig.RequestToVolley((result, response) -> {
-            if (result) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    phoneNumber = ("+" + session.getData(Constant.COUNTRY_CODE) + mobile);
-                    if (otpFor.equals("new_user")) {
-                        if (!object.getBoolean(Constant.ERROR)) {
-                            dialog.dismiss();
-                            setSnackBar(getString(R.string.alert_register_num1) + getString(R.string.app_name) + getString(R.string.alert_register_num2), getString(R.string.btn_ok), from);
-                        } else {
-                            sentRequest(phoneNumber);
-                        }
-                    } else if (otpFor.equals("exist_user")) {
-                        if (!object.getBoolean(Constant.ERROR)) {
-                            Constant.U_ID = object.getString(Constant.ID);
-                            sentRequest(phoneNumber);
-                        } else {
-                            dialog.dismiss();
-                            setSnackBar(getString(R.string.alert_not_register_num1) + getString(R.string.app_name) + getString(R.string.alert_not_register_num2), getString(R.string.btn_ok), from);
-                        }
-                    }
-                } catch (JSONException ignored) {
+//    public void generateOTP() {
+//        dialog = ProgressDialog.show(activity, "", getString(R.string.please_wait), true);
+//        session.setData(Constant.COUNTRY_CODE, countryCode);
+//        Map<String, String> params = new HashMap<>();
+//        params.put(Constant.TYPE, Constant.VERIFY_USER);
+//        params.put(Constant.MOBILE, mobile);
+//        ApiConfig.RequestToVolley((result, response) -> {
+//            if (result) {
+//                try {
+//                    JSONObject object = new JSONObject(response);
+//                    phoneNumber = ("+" + session.getData(Constant.COUNTRY_CODE) + mobile);
+//                    if (otpFor.equals("new_user")) {
+//                        if (!object.getBoolean(Constant.ERROR)) {
+//                            dialog.dismiss();
+//                            setSnackBar(getString(R.string.alert_register_num1) + getString(R.string.app_name) + getString(R.string.alert_register_num2), getString(R.string.btn_ok), from);
+//                        } else {
+//                            sentRequest(phoneNumber);
+//                        }
+//                    } else if (otpFor.equals("exist_user")) {
+//                        if (!object.getBoolean(Constant.ERROR)) {
+//                            Constant.U_ID = object.getString(Constant.ID);
+//                            sentRequest(phoneNumber);
+//                        } else {
+//                            dialog.dismiss();
+//                            setSnackBar(getString(R.string.alert_not_register_num1) + getString(R.string.app_name) + getString(R.string.alert_not_register_num2), getString(R.string.btn_ok), from);
+//                        }
+//                    }
+//                } catch (JSONException ignored) {
+//
+//                }
+//            }
+//        }, activity, Constant.REGISTER_URL, params, false);
+//    }
 
-                }
-            }
-        }, activity, Constant.REGISTER_URL, params, false);
-    }
+//    public void sentRequest(String phoneNumber) {
+//        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(auth)
+//                .setPhoneNumber(phoneNumber)
+//                .setTimeout(60L, TimeUnit.SECONDS)
+//                .setActivity(this)
+//                .setCallbacks(mCallback)
+//                .build();
+//
+//        PhoneAuthProvider.verifyPhoneNumber(options);
+//
+//    }
 
-    public void sentRequest(String phoneNumber) {
-        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(auth)
-                .setPhoneNumber(phoneNumber)
-                .setTimeout(60L, TimeUnit.SECONDS)
-                .setActivity(this)
-                .setCallbacks(mCallback)
-                .build();
-
-        PhoneAuthProvider.verifyPhoneNumber(options);
-
-    }
-
-    void StartFirebaseLogin() {
-        auth = FirebaseAuth.getInstance();
-
-        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            @Override
-            public void onVerificationCompleted(@NotNull PhoneAuthCredential phoneAuthCredential) {
-                //System.out.println ("====verification complete call  " + phoneAuthCredential.getSmsCode ());
-            }
-
-            @Override
-            public void onVerificationFailed(@NotNull FirebaseException e) {
-                setSnackBar(e.getLocalizedMessage(), getString(R.string.btn_ok), Constant.FAILED);
-            }
-
-            @Override
-            public void onCodeSent(@NotNull String s, @NotNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                super.onCodeSent(s, forceResendingToken);
-                dialog.dismiss();
-                firebase_otp = s;
-                pinViewOTP.requestFocus();
-                if (resendOTP) {
-                    Toast.makeText(activity, getString(R.string.otp_resend_alert), Toast.LENGTH_SHORT).show();
-                } else {
-                    edtMobileVerify.setEnabled(false);
-                    edtCountryCodePicker.setCcpClickable(false);
-                    btnVerify.setText(getString(R.string.verify_otp));
-                    lytOTP.setVisibility(View.VISIBLE);
-                    lytOTP.startAnimation(animShow);
-                    new CountDownTimer(120000, 1000) {
-                        @SuppressLint("SetTextI18n")
-                        public void onTick(long millisUntilFinished) {
-                            timerOn = true;
-                            // Used for formatting digit to be in 2 digits only
-                            NumberFormat f = new DecimalFormat("00");
-                            long min = (millisUntilFinished / 60000) % 60;
-                            long sec = (millisUntilFinished / 1000) % 60;
-                            tvTimer.setText(f.format(min) + ":" + f.format(sec));
-                        }
-
-                        public void onFinish() {
-                            resendOTP = false;
-                            timerOn = false;
-                            tvTimer.setVisibility(View.GONE);
-                            img.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
-                            tvResend.setTextColor(ContextCompat.getColor(activity,R.color.colorPrimary));
-
-                            tvResend.setOnClickListener(v -> {
-                                resendOTP = true;
-                                sentRequest("+" + session.getData(Constant.COUNTRY_CODE) + mobile);
-
-                                new CountDownTimer(120000, 1000) {
-                                    @SuppressLint("SetTextI18n")
-                                    public void onTick(long millisUntilFinished) {
-
-                                        tvTimer.setVisibility(View.VISIBLE);
-                                        img.setColorFilter(ContextCompat.getColor(activity, R.color.gray));
-                                        tvResend.setTextColor(ContextCompat.getColor(activity,R.color.gray));
-
-                                        timerOn = true;
-                                        // Used for formatting digit to be in 2 digits only
-                                        NumberFormat f = new DecimalFormat("00");
-                                        long min = (millisUntilFinished / 60000) % 60;
-                                        long sec = (millisUntilFinished / 1000) % 60;
-                                        tvTimer.setText(f.format(min) + ":" + f.format(sec));
-                                    }
-
-                                    public void onFinish() {
-                                        resendOTP = false;
-                                        timerOn = false;
-                                        tvTimer.setVisibility(View.GONE);
-                                        img.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
-                                        tvResend.setTextColor(ContextCompat.getColor(activity,R.color.colorPrimary));
-
-                                        tvResend.setOnClickListener(v1 -> {
-                                            resendOTP = true;
-                                            sentRequest("+" + session.getData(Constant.COUNTRY_CODE) + mobile);
-                                        });
-                                    }
-                                }.start();
-                            });
-                        }
-                    }.start();
-                }
-            }
-        };
-    }
+//    void StartFirebaseLogin() {
+//        auth = FirebaseAuth.getInstance();
+//
+//        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//            @Override
+//            public void onVerificationCompleted(@NotNull PhoneAuthCredential phoneAuthCredential) {
+//                //System.out.println ("====verification complete call  " + phoneAuthCredential.getSmsCode ());
+//            }
+//
+//            @Override
+//            public void onVerificationFailed(@NotNull FirebaseException e) {
+//                setSnackBar(e.getLocalizedMessage(), getString(R.string.btn_ok), Constant.FAILED);
+//            }
+//
+//            @Override
+//            public void onCodeSent(@NotNull String s, @NotNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                super.onCodeSent(s, forceResendingToken);
+//                dialog.dismiss();
+//                firebase_otp = s;
+//                pinViewOTP.requestFocus();
+//                if (resendOTP) {
+//                    Toast.makeText(activity, getString(R.string.otp_resend_alert), Toast.LENGTH_SHORT).show();
+//                } else {
+////                    edtMobileVerify.setEnabled(false);
+////                    edtCountryCodePicker.setCcpClickable(false);
+//                    btnVerify.setText(getString(R.string.verify_otp));
+//                    lytOTP.setVisibility(View.VISIBLE);
+//                    lytOTP.startAnimation(animShow);
+//                    new CountDownTimer(120000, 1000) {
+//                        @SuppressLint("SetTextI18n")
+//                        public void onTick(long millisUntilFinished) {
+//                            timerOn = true;
+//                            // Used for formatting digit to be in 2 digits only
+//                            NumberFormat f = new DecimalFormat("00");
+//                            long min = (millisUntilFinished / 60000) % 60;
+//                            long sec = (millisUntilFinished / 1000) % 60;
+//                            tvTimer.setText(f.format(min) + ":" + f.format(sec));
+//                        }
+//
+//                        public void onFinish() {
+//                            resendOTP = false;
+//                            timerOn = false;
+//                            tvTimer.setVisibility(View.GONE);
+//                            img.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+//                            tvResend.setTextColor(ContextCompat.getColor(activity,R.color.colorPrimary));
+//
+//                            tvResend.setOnClickListener(v -> {
+//                                resendOTP = true;
+//                                sentRequest("+" + session.getData(Constant.COUNTRY_CODE) + mobile);
+//
+//                                new CountDownTimer(120000, 1000) {
+//                                    @SuppressLint("SetTextI18n")
+//                                    public void onTick(long millisUntilFinished) {
+//
+//                                        tvTimer.setVisibility(View.VISIBLE);
+//                                        img.setColorFilter(ContextCompat.getColor(activity, R.color.gray));
+//                                        tvResend.setTextColor(ContextCompat.getColor(activity,R.color.gray));
+//
+//                                        timerOn = true;
+//                                        // Used for formatting digit to be in 2 digits only
+//                                        NumberFormat f = new DecimalFormat("00");
+//                                        long min = (millisUntilFinished / 60000) % 60;
+//                                        long sec = (millisUntilFinished / 1000) % 60;
+//                                        tvTimer.setText(f.format(min) + ":" + f.format(sec));
+//                                    }
+//
+//                                    public void onFinish() {
+//                                        resendOTP = false;
+//                                        timerOn = false;
+//                                        tvTimer.setVisibility(View.GONE);
+//                                        img.setColorFilter(ContextCompat.getColor(activity, R.color.colorPrimary));
+//                                        tvResend.setTextColor(ContextCompat.getColor(activity,R.color.colorPrimary));
+//
+//                                        tvResend.setOnClickListener(v1 -> {
+//                                            resendOTP = true;
+//                                            sentRequest("+" + session.getData(Constant.COUNTRY_CODE) + mobile);
+//                                        });
+//                                    }
+//                                }.start();
+//                            });
+//                        }
+//                    }.start();
+//                }
+//            }
+//        };
+//    }
 
     public void ForgotPassword() {
         String reset_psw = edtResetPass.getText().toString();
@@ -357,7 +381,7 @@ public class LoginActivity extends AppCompatActivity {
             params.put(Constant.TYPE, Constant.FORGOT_PASSWORD_MOBILE);
             params.put(Constant.PASSWORD, reset_c_psw);
             //params.put(Constant.USER_ID, session.getData(Constant.ID));
-            params.put(Constant.MOBILE, mobile);
+//            params.put(Constant.MOBILE, mobile);
             ApiConfig.RequestToVolley((result, response) -> {
                 if (result) {
                     try {
@@ -394,6 +418,27 @@ public class LoginActivity extends AppCompatActivity {
             }
         }, activity, Constant.LOGIN_URL, params, true);
     }
+//    public void UserLogin(String mobile, String password) {
+//        Map<String, String> params = new HashMap<>();
+//        params.put(Constant.LOGIN, Constant.GetVal);
+//        params.put(Constant.MOBILE, mobile);
+//        params.put(Constant.PASSWORD, password);
+//        params.put(Constant.FCM_ID, "" + session.getData(Constant.FCM_ID));
+//        ApiConfig.RequestToVolley((result, response) -> {
+//
+//            if (result) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    if (!jsonObject.getBoolean(Constant.ERROR)) {
+//                        StartMainActivity(jsonObject.getJSONArray(Constant.DATA).getJSONObject(0), password);
+//                    }
+//                    Toast.makeText(activity, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, activity, Constant.LOGIN_URL, params, true);
+//    }
 
 
     public void setSnackBar(String message, String action, final String type) {
@@ -420,38 +465,38 @@ public class LoginActivity extends AppCompatActivity {
         snackbar.show();
     }
 
-    @SuppressLint("SetTextI18n")
-    public void OTP_Varification(String otptext) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(firebase_otp, otptext);
-        auth.signInWithCredential(credential)
-                .addOnCompleteListener(activity, task -> {
-                    if (task.isSuccessful()) {
-                        if (otpFor.equals("new_user")) {
-                            tvMobile.setText("+" + session.getData(Constant.COUNTRY_CODE) + " " + mobile);
-                            lytSignUp.setVisibility(View.VISIBLE);
-                            lytSignUp.startAnimation(animShow);
-                        }
-                        if (otpFor.equals("exist_user")) {
-                            lytResetPass.setVisibility(View.VISIBLE);
-                            lytResetPass.startAnimation(animShow);}
-                    } else {
-                        //verification unsuccessful.. display an error message
-                        String message = "Something is wrong, we will fix it soon...";
-                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                            message = "Invalid code entered...";
-                        }
-                        pinViewOTP.requestFocus();
-                        pinViewOTP.setError(message);
-                    }
-                });
-    }
+//    @SuppressLint("SetTextI18n")
+//    public void OTP_Varification(String otptext) {
+//        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(firebase_otp, otptext);
+//        auth.signInWithCredential(credential)
+//                .addOnCompleteListener(activity, task -> {
+//                    if (task.isSuccessful()) {
+//                        if (otpFor.equals("new_user")) {
+//                            tvMobile.setText("+" + session.getData(Constant.COUNTRY_CODE) + " " + mobile);
+//                            lytSignUp.setVisibility(View.VISIBLE);
+//                            lytSignUp.startAnimation(animShow);
+//                        }
+//                        if (otpFor.equals("exist_user")) {
+//                            lytResetPass.setVisibility(View.VISIBLE);
+//                            lytResetPass.startAnimation(animShow);}
+//                    } else {
+//                        //verification unsuccessful.. display an error message
+//                        String message = "Something is wrong, we will fix it soon...";
+//                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+//                            message = "Invalid code entered...";
+//                        }
+//                        pinViewOTP.requestFocus();
+//                        pinViewOTP.setError(message);
+//                    }
+//                });
+//    }
 
-    public void UserSignUpSubmit(String name, String email, String password) {
+    public void UserSignUpSubmit(String name, String email,String phone, String password) {
         Map<String, String> params = new HashMap<>();
         params.put(Constant.TYPE, Constant.REGISTER);
         params.put(Constant.NAME, name);
         params.put(Constant.EMAIL, email);
-        params.put(Constant.MOBILE, mobile);
+        params.put(Constant.MOBILE, phone);
         params.put(Constant.PASSWORD, password);
         params.put(Constant.COUNTRY_CODE, session.getData(Constant.COUNTRY_CODE));
         params.put(Constant.FCM_ID, "" + session.getData(Constant.FCM_ID));
@@ -461,6 +506,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     if (!jsonObject.getBoolean(Constant.ERROR)) {
+                        //Lempar login
                         StartMainActivity(jsonObject, password);
                     }
                     Toast.makeText(activity, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
@@ -476,17 +522,18 @@ public class LoginActivity extends AppCompatActivity {
         hideKeyboard(activity, view);
         if (id == R.id.tvSignUp) {
             otpFor = "new_user";
-            edtMobileVerify.setText("");
-            edtMobileVerify.setEnabled(true);
-            edtCountryCodePicker.setCcpClickable(forMultipleCountryUse);
+            edEmailVerify.setText("");
+            edEmailVerify.setEnabled(true);
+//            edtCountryCodePicker.setCcpClickable(forMultipleCountryUse);
             lytOTP.setVisibility(View.GONE);
-            lytVerify.setVisibility(View.VISIBLE);
+            lytVerify.setVisibility(View.GONE);
+            lytSignUp.setVisibility(View.VISIBLE);
             lytVerify.startAnimation(animShow);
         } else if (id == R.id.tvForgotPass) {
             otpFor = "exist_user";
-            edtMobileVerify.setText("");
-            edtMobileVerify.setEnabled(true);
-            edtCountryCodePicker.setCcpClickable(forMultipleCountryUse);
+            edEmailVerify.setText("");
+            edEmailVerify.setEnabled(true);
+//            edtCountryCodePicker.setCcpClickable(forMultipleCountryUse);
             lytOTP.setVisibility(View.GONE);
             lytVerify.setVisibility(View.VISIBLE);
             lytVerify.startAnimation(animShow);
@@ -495,47 +542,56 @@ public class LoginActivity extends AppCompatActivity {
             ForgotPassword();
         } else if (id == R.id.btnLogin) {
             mobile = edtLoginMobile.getText().toString();
+//                email = edtLoginEmail.getText().toString();
             final String password = imgLoginPassword.getText().toString();
 
             if (ApiConfig.CheckValidation(mobile, false, false)) {
                 edtLoginMobile.requestFocus();
                 edtLoginMobile.setError(getString(R.string.enter_mobile_no));
+//                edtLoginEmail.requestFocus();
+//                edtLoginEmail.setError(getString(R.string.enter_email));
             } else if (ApiConfig.CheckValidation(mobile, false, true)) {
                 edtLoginMobile.requestFocus();
                 edtLoginMobile.setError(getString(R.string.enter_valid_mobile_no));
+//                edtLoginEmail.requestFocus();
+//                edtLoginEmail.setError(getString(R.string.enter_email));
             } else if (ApiConfig.CheckValidation(password, false, false)) {
                 imgLoginPassword.requestFocus();
                 imgLoginPassword.setError(getString(R.string.enter_pass));
             } else {
                 UserLogin(mobile, password);
             }
-        } else if (id == R.id.btnVerify) {
-            if (lytOTP.getVisibility() == View.GONE) {
-                hideKeyboard(activity, view);
-                mobile = edtMobileVerify.getText().toString().trim();
-                countryCode = edtCountryCodePicker.getSelectedCountryCode();
-                if (ApiConfig.CheckValidation(mobile, false, false)) {
-                    edtMobileVerify.requestFocus();
-                    edtMobileVerify.setError(getString(R.string.enter_mobile_no));
-                } else if (ApiConfig.CheckValidation(mobile, false, true)) {
-                    edtMobileVerify.requestFocus();
-                    edtMobileVerify.setError(getString(R.string.enter_valid_mobile_no));
-                } else {
-                    generateOTP();
-                }
-            } else {
-                String otptext = Objects.requireNonNull(pinViewOTP.getText()).toString().trim();
-                if (ApiConfig.CheckValidation(otptext, false, false)) {
-                    pinViewOTP.requestFocus();
-                    pinViewOTP.setError(getString(R.string.enter_otp));
-                } else {
-                    OTP_Varification(otptext);
-                }
-            }
-
-        } else if (id == R.id.btnRegister) {
+        }
+//        else if (id == R.id.btnVerify) {
+//            if (lytOTP.getVisibility() == View.GONE) {
+//                hideKeyboard(activity, view);
+//                mobile = edtMobileVerify.getText().toString().trim();
+//                countryCode = edtCountryCodePicker.getSelectedCountryCode();
+//                if (ApiConfig.CheckValidation(mobile, false, false)) {
+//                    edtMobileVerify.requestFocus();
+//                    edtMobileVerify.setError(getString(R.string.enter_mobile_no));
+//                } else if (ApiConfig.CheckValidation(mobile, false, true)) {
+//                    edtMobileVerify.requestFocus();
+//                    edtMobileVerify.setError(getString(R.string.enter_valid_mobile_no));
+//                } else {
+//                    generateOTPEmail();
+//                }
+//            }
+//            else {
+//                String otptext = Objects.requireNonNull(pinViewOTP.getText()).toString().trim();
+//                if (ApiConfig.CheckValidation(otptext, false, false)) {
+//                    pinViewOTP.requestFocus();
+//                    pinViewOTP.setError(getString(R.string.enter_otp));
+//                } else {
+//                    OTP_Varification(otptext);
+//                }
+//            }
+//
+//        }
+        else if (id == R.id.btnRegister) {
             String name = edtName.getText().toString().trim();
             String email = "" + edtEmail.getText().toString().trim();
+            String phone = edtPhone.getText().toString().trim();
             final String password = edtPassword.getText().toString().trim();
             String cpassword = edtConfirmPassword.getText().toString().trim();
             if (ApiConfig.CheckValidation(name, false, false)) {
@@ -559,20 +615,20 @@ public class LoginActivity extends AppCompatActivity {
             } else if (!chPrivacy.isChecked()) {
                 Toast.makeText(activity, getString(R.string.alert_privacy_msg), Toast.LENGTH_LONG).show();
             } else {
-                UserSignUpSubmit(name, email, password);
+                UserSignUpSubmit(name, email,phone, password);
             }
         } else if (id == R.id.tvResend) {
-            resendOTP = true;
-            sentRequest("+" + session.getData(Constant.COUNTRY_CODE) + mobile);
+//            resendOTP = true;
+//            sentRequest("+" + session.getData(Constant.COUNTRY_CODE) + mobile);
 
         } else if (id == R.id.imgVerifyClose) {
-            lytOTP.setVisibility(View.GONE);
-            lytVerify.setVisibility(View.GONE);
-            lytVerify.startAnimation(animHide);
-            edtMobileVerify.setText("");
-            edtMobileVerify.setEnabled(true);
-            edtCountryCodePicker.setCcpClickable(forMultipleCountryUse);
-            pinViewOTP.setText("");
+//            lytOTP.setVisibility(View.GONE);
+//            lytVerify.setVisibility(View.GONE);
+//            lytVerify.startAnimation(animHide);
+//            edtMobileVerify.setText("");
+//            edtMobileVerify.setEnabled(true);
+//            edtCountryCodePicker.setCcpClickable(forMultipleCountryUse);
+//            pinViewOTP.setText("");
         } else if (id == R.id.imgResetPasswordClose) {
             edtResetPass.setText("");
             edtResetCPass.setText("");
@@ -581,7 +637,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (id == R.id.imgSignUpClose) {
             lytSignUp.setVisibility(View.GONE);
             lytSignUp.startAnimation(animHide);
-            tvMobile.setText("");
+//            tvMobile.setText("");
             edtName.setText("");
             edtEmail.setText("");
             edtPassword.setText("");

@@ -339,6 +339,8 @@ public class Constant {
     public static final String min_refer_earn_order_amount = "min_refer_earn_order_amount";
     public static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghjiklmnopqrstuvwxyz";
     public static final String NUMERIC_STRING = "123456789";
+    public static final String DOB = "dob";
+    public static final String IS_PREMIUM = "is_premium";
     public static String TOOLBAR_TITLE;
 
     //**************Constants Values***************
