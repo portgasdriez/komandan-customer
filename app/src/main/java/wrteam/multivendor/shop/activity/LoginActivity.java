@@ -2,6 +2,7 @@ package wrteam.multivendor.shop.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,8 +50,11 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -71,7 +76,9 @@ public class LoginActivity extends AppCompatActivity {
             edtName, edtEmail, edtPassword, edtConfirmPassword,
 //            edtMobileVerify
                 edtPhone,
-                edEmailVerify;
+                edEmailVerify,
+                edDob,
+                edtAddress;
     Button btnVerify;
 //    CountryCodePicker edtCountryCodePicker;
     PinView pinViewOTP;
@@ -95,11 +102,11 @@ public class LoginActivity extends AppCompatActivity {
     ImageView img;
     RelativeLayout lytWebView;
     WebView webView;
-    String from, mobile, countryCode;
+    String from, mobile, countryCode,dates;
 //    String from, email, countryCode;
     ProgressDialog dialog;
     boolean forMultipleCountryUse = true;
-
+    final Calendar myCalendar= Calendar.getInstance();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -136,6 +143,8 @@ public class LoginActivity extends AppCompatActivity {
         pinViewOTP = findViewById(R.id.pinViewOTP);
         btnVerify = findViewById(R.id.btnVerify);
 //        edtMobileVerify = findViewById(R.id.edtMobileVerify);
+        edDob = findViewById(R.id.edDob);
+        edtAddress = findViewById(R.id.edtAddress);
         edtPhone = findViewById(R.id.edtPhone);
         edEmailVerify = findViewById(R.id.edEmailVerify);
         lytVerify = findViewById(R.id.lytVerify);
@@ -177,6 +186,23 @@ public class LoginActivity extends AppCompatActivity {
         lytSignUp.setVisibility(View.GONE);
         lytOTP.setVisibility(View.GONE);
         lytWebView.setVisibility(View.GONE);
+
+        DatePickerDialog.OnDateSetListener date =new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH,month);
+                myCalendar.set(Calendar.DAY_OF_MONTH,day);
+                updateLabel();
+            }
+        };
+        edDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(LoginActivity.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
 
         tvWelcome.setText(getString(R.string.welcome) + getString(R.string.app_name));
 
@@ -498,6 +524,8 @@ public class LoginActivity extends AppCompatActivity {
         params.put(Constant.EMAIL, email);
         params.put(Constant.MOBILE, phone);
         params.put(Constant.PASSWORD, password);
+        params.put(Constant.ADDRESS, edtAddress.getText().toString());
+        params.put(Constant.DOB, edDob.getText().toString());
         params.put(Constant.COUNTRY_CODE, session.getData(Constant.COUNTRY_CODE));
         params.put(Constant.FCM_ID, "" + session.getData(Constant.FCM_ID));
         params.put(Constant.FRIEND_CODE, edtRefer.getText().toString().trim());
@@ -648,6 +676,15 @@ public class LoginActivity extends AppCompatActivity {
             lytWebView.startAnimation(animHide);
         }
 
+    }
+
+    public void getDob(){
+      }
+
+    private void updateLabel(){
+        String myFormat="yyyy-MM-dd";
+        SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
+        edDob.setText(dateFormat.format(myCalendar.getTime()));
     }
 
     public void StartMainActivity(JSONObject jsonObject, String password) {
