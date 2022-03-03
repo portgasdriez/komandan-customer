@@ -517,15 +517,16 @@ public class LoginActivity extends AppCompatActivity {
 //                });
 //    }
 
-    public void UserSignUpSubmit(String name, String email,String phone, String password) {
+    public void UserSignUpSubmit(String name, String email,String phone, String password,String dob,String address) {
         Map<String, String> params = new HashMap<>();
         params.put(Constant.TYPE, Constant.REGISTER);
         params.put(Constant.NAME, name);
         params.put(Constant.EMAIL, email);
         params.put(Constant.MOBILE, phone);
         params.put(Constant.PASSWORD, password);
-        params.put(Constant.ADDRESS, edtAddress.getText().toString());
-        params.put(Constant.DOB, edDob.getText().toString());
+        params.put(Constant.ADDRESS, address);
+        params.put(Constant.DOB, dob);
+        params.put(Constant.IS_PREMIUM,"1");
         params.put(Constant.COUNTRY_CODE, session.getData(Constant.COUNTRY_CODE));
         params.put(Constant.FCM_ID, "" + session.getData(Constant.FCM_ID));
         params.put(Constant.FRIEND_CODE, edtRefer.getText().toString().trim());
@@ -622,6 +623,8 @@ public class LoginActivity extends AppCompatActivity {
             String phone = edtPhone.getText().toString().trim();
             final String password = edtPassword.getText().toString().trim();
             String cpassword = edtConfirmPassword.getText().toString().trim();
+            String dobs = edDob.getText().toString().trim();
+            String address = edtAddress.getText().toString().trim();
             if (ApiConfig.CheckValidation(name, false, false)) {
                 edtName.requestFocus();
                 edtName.setError(getString(R.string.enter_name));
@@ -642,8 +645,16 @@ public class LoginActivity extends AppCompatActivity {
                 edtConfirmPassword.setError(getString(R.string.pass_not_match));
             } else if (!chPrivacy.isChecked()) {
                 Toast.makeText(activity, getString(R.string.alert_privacy_msg), Toast.LENGTH_LONG).show();
-            } else {
-                UserSignUpSubmit(name, email,phone, password);
+            } else if (ApiConfig.CheckValidation(dobs, false, false)) {
+                edDob.setError("Mohon isi tanggal lahir");
+            }
+            else if (ApiConfig.CheckValidation(address, false, false)) {
+                edDob.setError("Mohon isi alamat anda");
+            }
+            else if (ApiConfig.CheckValidation(phone, false, false)) {
+                edDob.setError("Mohon isi nomor telepon anda");
+            }else {
+                UserSignUpSubmit(name, email,phone, password,dobs,address);
             }
         } else if (id == R.id.tvResend) {
 //            resendOTP = true;
@@ -696,7 +707,8 @@ public class LoginActivity extends AppCompatActivity {
                     jsonObject.getString(Constant.EMAIL),
                     jsonObject.getString(Constant.MOBILE),
                     password,
-                    jsonObject.getString(Constant.REFERRAL_CODE));
+                    jsonObject.getString(Constant.REFERRAL_CODE),
+                    jsonObject.getString(Constant.IS_PREMIUM));
 
             ApiConfig.AddMultipleProductInCart(session, activity, databaseHelper.getCartData());
             ApiConfig.AddMultipleProductInSaveForLater(session, activity, databaseHelper.getSaveForLaterData());

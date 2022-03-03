@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,6 +54,7 @@ import wrteam.multivendor.shop.fragment.FavoriteFragment;
 import wrteam.multivendor.shop.fragment.HomeFragment;
 import wrteam.multivendor.shop.fragment.OrderPlacedFragment;
 import wrteam.multivendor.shop.fragment.PinCodeFragment;
+import wrteam.multivendor.shop.fragment.PopupPremiumNotifFragment;
 import wrteam.multivendor.shop.fragment.ProductDetailFragment;
 import wrteam.multivendor.shop.fragment.ProductListFragment;
 import wrteam.multivendor.shop.fragment.SubCategoryFragment;
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     CardView cardViewHamburger;
     TextView toolbarTitle;
     public static PinCodeFragment pinCodeFragment;
+    public static PopupPremiumNotifFragment popupPremiumNotifFragment;
     ImageView imageMenu, imageHome;
 
     @Override
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             session.setData(Constant.STATUS, "1");
             databaseHelper.getTotalItemOfCart(activity);
         }
+
 
         setAppLocal("en"); //Change you language code here
 
@@ -212,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 }
             }
+
             return false;
         });
 
@@ -431,7 +436,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     @SuppressLint("SetTextI18n")
-    public static void getUserData(final Activity activity, Session session) {
+    public void getUserData(final Activity activity, Session session) {
         try {
             Map<String, String> params = new HashMap<>();
             params.put(Constant.GET_USER_DATA, Constant.GetVal);
@@ -442,7 +447,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         JSONObject jsonObject_ = new JSONObject(response);
                         if (!jsonObject_.getBoolean(Constant.ERROR)) {
                             JSONObject jsonObject = jsonObject_.getJSONArray(Constant.DATA).getJSONObject(0);
-                            session.setUserData(jsonObject.getString(Constant.USER_ID), jsonObject.getString(Constant.NAME), jsonObject.getString(Constant.EMAIL), jsonObject.getString(Constant.COUNTRY_CODE), jsonObject.getString(Constant.PROFILE), jsonObject.getString(Constant.MOBILE), jsonObject.getString(Constant.BALANCE), jsonObject.getString(Constant.REFERRAL_CODE), jsonObject.getString(Constant.FRIEND_CODE), jsonObject.getString(Constant.FCM_ID), jsonObject.getString(Constant.STATUS));
+                            session.setUserData(jsonObject.getString(Constant.USER_ID), jsonObject.getString(Constant.NAME), jsonObject.getString(Constant.EMAIL), jsonObject.getString(Constant.COUNTRY_CODE), jsonObject.getString(Constant.PROFILE), jsonObject.getString(Constant.MOBILE), jsonObject.getString(Constant.BALANCE), jsonObject.getString(Constant.REFERRAL_CODE), jsonObject.getString(Constant.FRIEND_CODE), jsonObject.getString(Constant.FCM_ID), jsonObject.getString(Constant.STATUS), jsonObject.getString(Constant.IS_PREMIUM));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -453,6 +458,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             e.printStackTrace();
         }
     }
+
 
     public void GetProductsName() {
         Map<String, String> params = new HashMap<>();

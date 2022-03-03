@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.widget.NestedScrollView;
@@ -131,15 +133,16 @@ public class HomeFragment extends Fragment {
         lytBelowSellerOfferImages.setLayoutManager(new LinearLayoutManager(activity));
         lytBelowSellerOfferImages.setNestedScrollingEnabled(false);
 
-        if (!session.getBoolean(Constant.GET_SELECTED_PINCODE)) {
-            MainActivity.pinCodeFragment = new PinCodeFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString(Constant.FROM, "home");
-            MainActivity.pinCodeFragment.setArguments(bundle);
-            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
-        } else {
-            tvLocation.setText(session.getData(Constant.GET_SELECTED_PINCODE_NAME));
-        }
+//        if (!session.getBoolean(Constant.GET_SELECTED_PINCODE)) {
+//            MainActivity.pinCodeFragment = new PinCodeFragment();
+//            Bundle bundle = new Bundle();
+//            bundle.putString(Constant.FROM, "home");
+//            MainActivity.pinCodeFragment.setArguments(bundle);
+//            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
+//        } else {
+//            tvLocation.setText(session.getData(Constant.GET_SELECTED_PINCODE_NAME));
+//        }
+
 
         tvTitleLocation.setOnClickListener(v -> {
             MainActivity.pinCodeFragment = new PinCodeFragment();
@@ -246,10 +249,33 @@ public class HomeFragment extends Fragment {
         if (new Session(activity).getBoolean(Constant.IS_USER_LOGIN)) {
             ApiConfig.getWalletBalance(activity, new Session(activity));
         }
-
+        checkPremium();
         return root;
     }
-
+    public void checkPremium(){
+        if (session.getData(Constant.IS_PREMIUM).equals("0")) {
+            Toast.makeText(getActivity(),"Premium",Toast.LENGTH_LONG).show();
+            Log.e("PREIUM","0");
+        }
+        else if (session.getData(Constant.IS_PREMIUM).equals("1")) {
+            //Trial 30 hari
+            MainActivity.popupPremiumNotifFragment = new PopupPremiumNotifFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.FROM, "home");
+            MainActivity.popupPremiumNotifFragment.setArguments(bundle);
+            MainActivity.popupPremiumNotifFragment.show(MainActivity.fm, null);
+        }  else if (session.getData(Constant.IS_PREMIUM).equals("2")) {
+            //Kadaluarsa
+            MainActivity.popupPremiumNotifFragment = new PopupPremiumNotifFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.FROM, "home");
+            MainActivity.popupPremiumNotifFragment.setArguments(bundle);
+            MainActivity.popupPremiumNotifFragment.show(MainActivity.fm, null);
+        } else {
+            Toast.makeText(getActivity(),"Error",Toast.LENGTH_LONG).show();
+            Log.e("PREIUM","error");
+        }
+    }
     public void GetHomeData() {
         nestedScrollView.setVisibility(View.GONE);
         mShimmerViewContainer.setVisibility(View.VISIBLE);
