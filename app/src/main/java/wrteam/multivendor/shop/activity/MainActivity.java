@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
 
-        setAppLocal("en"); //Change you language code here
+        setAppLocal("in"); //Change you language code here
 
         fm = getSupportFragmentManager();
 
@@ -150,11 +150,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 },
                 new int[]{
                         Color.parseColor(getResources().getString(R.color.text_unselected)),
-                        Color.parseColor(getResources().getString(R.color.colorSecondary))
+                        Color.parseColor(getResources().getString(R.color.colorPrimaryLight))
                 });
 
         bottomNavigationView.setItemIconTintList(iconColorStates);
         bottomNavigationView.setItemTextColor(iconColorStates);
+        bottomNavigationView.setItemIconTintList(null);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             {
@@ -392,7 +393,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             toolbarTitle.setText(Constant.TOOLBAR_TITLE);
             bottomNavigationView.setVisibility(View.GONE);
 
-            cardViewHamburger.setCardBackgroundColor(getColor(R.color.colorPrimaryLight));
+//            cardViewHamburger.setCardBackgroundColor(getColor(R.color.colorPrimaryLight));
             imageMenu.setOnClickListener(v -> fm.popBackStack());
 
             imageMenu.setVisibility(View.VISIBLE);
@@ -404,7 +405,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 toolbarTitle.setText(getString(R.string.hi_user));
             }
             bottomNavigationView.setVisibility(View.VISIBLE);
-            cardViewHamburger.setCardBackgroundColor(getColor(R.color.colorPrimaryLight));
+//            cardViewHamburger.setCardBackgroundColor(getColor(R.color.colorPrimaryLight));
             imageMenu.setVisibility(View.GONE);
             imageHome.setVisibility(View.VISIBLE);
         }

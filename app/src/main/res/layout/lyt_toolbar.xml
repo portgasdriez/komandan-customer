@@ -6,7 +6,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     app:contentInsetStartWithNavigation="0dp"
     app:menu="@menu/main_menu"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -23,7 +23,7 @@
             android:layout_height="@dimen/_26sdp"
             android:layout_alignParentStart="true"
             android:elevation="0dp"
-            app:cardBackgroundColor="@color/colorPrimaryLight"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_5sdp"
             app:cardElevation="0dp">
 
@@ -65,7 +65,7 @@
             android:maxLines="1"
             android:text="@string/hi_user"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold" />
     </RelativeLayout>
 

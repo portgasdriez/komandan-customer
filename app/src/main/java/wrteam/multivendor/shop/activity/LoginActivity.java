@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                 edEmailVerify,
                 edDob,
                 edtAddress;
-    Button btnVerify;
+    Button btnVerify,btnLoginReg;
 //    CountryCodePicker edtCountryCodePicker;
     PinView pinViewOTP;
 //    TextView tvMobile, tvWelcome, tvTimer, tvResend, tvForgotPass, tvPrivacyPolicy;
@@ -142,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
         lytOTP = findViewById(R.id.lytOTP);
         pinViewOTP = findViewById(R.id.pinViewOTP);
         btnVerify = findViewById(R.id.btnVerify);
+        btnLoginReg = findViewById(R.id.btnLoginReg);
 //        edtMobileVerify = findViewById(R.id.edtMobileVerify);
         edDob = findViewById(R.id.edDob);
         edtAddress = findViewById(R.id.edtAddress);
@@ -202,9 +203,8 @@ public class LoginActivity extends AppCompatActivity {
                 new DatePickerDialog(LoginActivity.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
-        tvWelcome.setText(getString(R.string.welcome) + getString(R.string.app_name));
+//        tvWelcome.setText(getString(R.string.welcome) + getString(R.string.app_name));
+        tvWelcome.setText("Masuk menggunakan nomor handphone");
 
 //        edtCountryCodePicker.setCountryForNameCode("IN");
         forMultipleCountryUse = false;
@@ -465,8 +465,6 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        }, activity, Constant.LOGIN_URL, params, true);
 //    }
-
-
     public void setSnackBar(String message, String action, final String type) {
         final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction(action, view -> {
@@ -526,7 +524,7 @@ public class LoginActivity extends AppCompatActivity {
         params.put(Constant.PASSWORD, password);
         params.put(Constant.ADDRESS, address);
         params.put(Constant.DOB, dob);
-        params.put(Constant.IS_PREMIUM,"1");
+        params.put(Constant.IS_PREMIUM,"0");
         params.put(Constant.COUNTRY_CODE, session.getData(Constant.COUNTRY_CODE));
         params.put(Constant.FCM_ID, "" + session.getData(Constant.FCM_ID));
         params.put(Constant.FRIEND_CODE, edtRefer.getText().toString().trim());
@@ -569,6 +567,10 @@ public class LoginActivity extends AppCompatActivity {
         } else if (id == R.id.btnResetPass) {
             hideKeyboard(activity, view);
             ForgotPassword();
+        }else if (id == R.id.btnLoginReg) {
+            lytLogin.setVisibility(View.VISIBLE);
+            lytSignUp.setVisibility(View.GONE);
+            lytVerify.startAnimation(animShow);
         } else if (id == R.id.btnLogin) {
             mobile = edtLoginMobile.getText().toString();
 //                email = edtLoginEmail.getText().toString();

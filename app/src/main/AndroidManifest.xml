@@ -172,9 +172,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity
-            android:name="com.canhub.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" /> <!-- optional (needed if default theme has no action bar) -->
+<!--        <activity-->
+<!--            android:name="com.canhub.cropper.CropImageActivity"-->
+<!--            android:theme="@style/Base.Theme.AppCompat" /> &lt;!&ndash; optional (needed if default theme has no action bar) &ndash;&gt;-->
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation"
@@ -207,9 +207,9 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_api_key" />
+<!--        <meta-data-->
+<!--            android:name="com.google.android.geo.API_KEY"-->
+<!--            android:value="@string/google_api_key" />-->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

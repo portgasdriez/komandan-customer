@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/ic_close" />
+            android:background="@drawable/ic_close_" />
 
         <RelativeLayout
             android:id="@+id/lytTitle"
@@ -32,7 +32,7 @@
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:text="Notifikasi"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -43,7 +43,7 @@
             android:layout_below="@id/lytTitle"
             android:layout_marginBottom="@dimen/_5sdp"
             android:text="Id anda hanya berlaku 30 hari, segera lakukan pembayaran sebesar Rp. 150.000"
-            android:textColor="@color/red"
+            android:textColor="@color/black"
             android:textSize="@dimen/_10sdp" />
 
 

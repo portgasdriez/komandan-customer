@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:focusableInTouchMode="true">
 
     <androidx.appcompat.widget.Toolbar
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         app:contentInsetStartWithNavigation="@dimen/_1sdp"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:titleTextColor="@color/colorPrimary"
+        app:titleTextColor="@color/black"
         local:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <ImageView
@@ -130,7 +130,7 @@
                 android:paddingBottom="@dimen/_18sdp"
                 android:text="@string/login"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -156,7 +156,7 @@
                 android:paddingBottom="@dimen/_18sdp"
                 android:text="@string/not_registered"
                 android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -760,14 +760,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/card_shadow"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@color/light_grey"
                 android:onClick="OnBtnClick"
                 android:paddingTop="@dimen/_18sdp"
                 android:paddingBottom="@dimen/_18sdp"
-                android:text="@string/submit"
+                android:text="Daftar"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnLoginReg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn"
+                android:backgroundTint="@color/red"
+                android:onClick="OnBtnClick"
+                android:paddingTop="@dimen/_18sdp"
+                android:paddingBottom="@dimen/_18sdp"
+                android:text="Login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
         </LinearLayout>
     </ScrollView>
 

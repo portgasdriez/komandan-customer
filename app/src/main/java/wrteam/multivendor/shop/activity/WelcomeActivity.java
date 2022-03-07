@@ -48,7 +48,7 @@ public class WelcomeActivity extends AppCompatActivity {
             } else {
                 new Session(WelcomeActivity.this).setBoolean("is_first_time", true);
                 new Session(WelcomeActivity.this).setBoolean("isCartFirstTime", true);
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class).putExtra(Constant.FROM, ""));
+                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class).putExtra(Constant.FROM, ""));
                 finish();
             }
         });
@@ -56,7 +56,7 @@ public class WelcomeActivity extends AppCompatActivity {
         tvSkip.setOnClickListener(view -> {
             new Session(WelcomeActivity.this).setBoolean("is_first_time", true);
             new Session(WelcomeActivity.this).setBoolean("isCartFirstTime", true);
-            startActivity(new Intent(WelcomeActivity.this, MainActivity.class).putExtra(Constant.FROM, ""));
+            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class).putExtra(Constant.FROM, ""));
             finish();
         });
 
