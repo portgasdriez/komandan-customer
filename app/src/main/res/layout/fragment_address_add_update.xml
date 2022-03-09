@@ -273,33 +273,33 @@
                     android:padding="2dp"
                     app:drawableStartCompat="@drawable/ic_address" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:background="#FFFFFF"
-                    android:orientation="vertical">
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_margin="@dimen/_10sdp"-->
+<!--                    android:background="#FFFFFF"-->
+<!--                    android:orientation="vertical">-->
 
-                    <!--suppress AndroidUnknownAttribute -->
-                    <androidx.fragment.app.FragmentContainerView
-                        android:id="@+id/map"
-                        class="com.google.android.gms.maps.SupportMapFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp" />
-                </RelativeLayout>
+<!--                    &lt;!&ndash;suppress AndroidUnknownAttribute &ndash;&gt;-->
+<!--                    <androidx.fragment.app.FragmentContainerView-->
+<!--                        android:id="@+id/map"-->
+<!--                        class="com.google.android.gms.maps.SupportMapFragment"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="120dp" />-->
+<!--                </RelativeLayout>-->
 
-                <TextView
-                    android:id="@+id/tvUpdate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/border_btn"
-                    android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    android:text="@string/update_location"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tvUpdate"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_marginTop="@dimen/_10sdp"-->
+<!--                    android:background="@drawable/border_btn"-->
+<!--                    android:paddingStart="15dp"-->
+<!--                    android:paddingEnd="15dp"-->
+<!--                    android:text="@string/update_location"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="16sp" />-->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

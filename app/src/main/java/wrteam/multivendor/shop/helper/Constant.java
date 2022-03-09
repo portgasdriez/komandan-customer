@@ -9,7 +9,7 @@ public class Constant {
   public static final String MainBaseUrl = "https://komandancoop.com/"; //Admin panel url with it whould be nessesary to put "/"(slash) at end of the url (https://admin.panel.url/)
 
   //Admin panel url or ecart multivendor website url (if exist) url with it whould be nessesary to put "/"(slash) at end of the url (https://admin.panel.url/)
-  public static final String WebSiteUrl = "https://admin.panel.or.website.url/";
+  public static final String WebSiteUrl = "https://komandancoop.com/";
 
     //set your jwt secret key here...key must same in PHP and Android
     public static final String JWT_KEY = "komandan123";

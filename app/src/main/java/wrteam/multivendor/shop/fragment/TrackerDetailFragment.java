@@ -348,7 +348,8 @@ public class TrackerDetailFragment extends Fragment {
             tvDAmount.setText("- " + session.getData(Constant.CURRENCY) + ApiConfig.StringFormat(order.getdAmount()));
             tvTotal.setText(session.getData(Constant.CURRENCY) + totalAfterTax);
             tvPCAmount.setText("- " + session.getData(Constant.CURRENCY) + ApiConfig.StringFormat(order.getPromoDiscount()));
-            tvWallet.setText("- " + session.getData(Constant.CURRENCY) + ApiConfig.StringFormat(order.getWalletBalance()));
+//            tvWallet.setText("- " + session.getData(Constant.CURRENCY) + ApiConfig.StringFormat(order.getWalletBalance()));
+            tvWallet.setVisibility(View.GONE);
             tvFinalTotal.setText(session.getData(Constant.CURRENCY) + ApiConfig.StringFormat(order.getFinal_total()));
 
             scrollView.setVisibility(View.VISIBLE);

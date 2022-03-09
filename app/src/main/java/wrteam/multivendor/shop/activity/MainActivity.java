@@ -400,9 +400,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             imageHome.setVisibility(View.GONE);
         } else {
             if (session.getBoolean(Constant.IS_USER_LOGIN)) {
-                toolbarTitle.setText(getString(R.string.hi) + session.getData(Constant.NAME) + "!");
+                toolbarTitle.setText(session.getData(Constant.NAME));
             } else {
-                toolbarTitle.setText(getString(R.string.hi_user));
+                toolbarTitle.setText("Halo");
             }
             bottomNavigationView.setVisibility(View.VISIBLE);
 //            cardViewHamburger.setCardBackgroundColor(getColor(R.color.colorPrimaryLight));
@@ -448,7 +448,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         JSONObject jsonObject_ = new JSONObject(response);
                         if (!jsonObject_.getBoolean(Constant.ERROR)) {
                             JSONObject jsonObject = jsonObject_.getJSONArray(Constant.DATA).getJSONObject(0);
-                            session.setUserData(jsonObject.getString(Constant.USER_ID), jsonObject.getString(Constant.NAME), jsonObject.getString(Constant.EMAIL), jsonObject.getString(Constant.COUNTRY_CODE), jsonObject.getString(Constant.PROFILE), jsonObject.getString(Constant.MOBILE), jsonObject.getString(Constant.BALANCE), jsonObject.getString(Constant.REFERRAL_CODE), jsonObject.getString(Constant.FRIEND_CODE), jsonObject.getString(Constant.FCM_ID), jsonObject.getString(Constant.STATUS), jsonObject.getString(Constant.IS_PREMIUM));
+                            session.setUserData(jsonObject.getString(Constant.USER_ID),
+                                    jsonObject.getString(Constant.NAME),
+                                    jsonObject.getString(Constant.EMAIL),
+                                    jsonObject.getString(Constant.COUNTRY_CODE),
+                                    jsonObject.getString(Constant.PROFILE),
+                                    jsonObject.getString(Constant.MOBILE),
+                                    jsonObject.getString(Constant.BALANCE),
+//                                    jsonObject.getString(Constant.REFERRAL_CODE),
+                                    jsonObject.getString(Constant.FRIEND_CODE),
+                                    jsonObject.getString(Constant.FCM_ID), jsonObject.getString(Constant.STATUS), jsonObject.getString(Constant.IS_PREMIUM));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

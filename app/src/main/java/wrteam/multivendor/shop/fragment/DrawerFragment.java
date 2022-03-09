@@ -87,7 +87,7 @@ public class DrawerFragment extends Fragment {
         if (session.getBoolean(Constant.IS_USER_LOGIN)) {
             tvName.setText(session.getData(Constant.NAME));
             tvMobile.setText(session.getData(Constant.MOBILE));
-            tvWallet.setVisibility(View.VISIBLE);
+            tvWallet.setVisibility(View.GONE);
             imgEditProfile.setVisibility(View.VISIBLE);
             Picasso.get()
                     .load(session.getData(Constant.PROFILE))

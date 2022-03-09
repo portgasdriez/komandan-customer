@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryLight"
-        android:padding="@dimen/_5sdp">
+        android:padding="@dimen/_5sdp"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tvTitleLocation"
@@ -24,6 +25,7 @@
             android:drawablePadding="@dimen/_2sdp"
             android:paddingTop="@dimen/_4sdp"
             android:paddingBottom="@dimen/_4sdp"
+            android:visibility="gone"
             android:text="@string/deliver_to"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/white"

@@ -65,7 +65,11 @@ public class Session {
         return pref.getBoolean(id, false);
     }
 
-    public void createUserLoginSession(String profile, String fcmId, String id, String name, String email, String mobile, String password, String referCode,String isPremium) {
+    public void createUserLoginSession(String profile, String fcmId, String id,
+                                       String name, String email, String mobile,
+                                       String password,
+//                                       String referCode,
+                                       String isPremium) {
         editor.putBoolean(Constant.IS_USER_LOGIN, true);
         editor.putString(Constant.FCM_ID, fcmId);
         editor.putString(Constant.ID, id);
@@ -73,7 +77,7 @@ public class Session {
         editor.putString(Constant.EMAIL, email);
         editor.putString(Constant.MOBILE, mobile);
         editor.putString(Constant.PASSWORD, password);
-        editor.putString(Constant.REFERRAL_CODE, referCode);
+//        editor.putString(Constant.REFERRAL_CODE, referCode);
         editor.putString(Constant.PROFILE, profile);
         editor.putString(Constant.IS_PREMIUM, isPremium);
         editor.commit();
@@ -81,7 +85,9 @@ public class Session {
 
     public void setUserData(String user_id, String name, String email,
                             String country_code, String profile, String mobile,
-                            String balance, String referral_code, String friends_code,
+                            String balance,
+//                            String referral_code,
+                            String friends_code,
                             String fcm_id, String status, String is_premium) {
 
         editor.putString(Constant.USER_ID, user_id);
@@ -91,7 +97,7 @@ public class Session {
         editor.putString(Constant.PROFILE, profile);
         editor.putString(Constant.MOBILE, mobile);
         editor.putString(Constant.BALANCE, balance);
-        editor.putString(Constant.REFERRAL_CODE, referral_code);
+//        editor.putString(Constant.REFERRAL_CODE, referral_code);
         editor.putString(Constant.FRIEND_CODE, friends_code);
         editor.putString(Constant.FCM_ID, fcm_id);
         editor.putString(Constant.STATUS, status);

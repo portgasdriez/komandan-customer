@@ -179,9 +179,11 @@ public class CartFragment extends Fragment {
                 } else {
                     Toast.makeText(activity, getString(R.string.msg_minimum_order_amount) + session.getData(Constant.CURRENCY) + ApiConfig.StringFormat(session.getData(Constant.min_order_amount)), Toast.LENGTH_SHORT).show();
                 }
-            } else if (isDeliverable) {
+            }
+            else if (isDeliverable) {
                 Toast.makeText(activity, getString(R.string.msg_non_deliverable), Toast.LENGTH_SHORT).show();
-            } else {
+            }
+            else {
                 Toast.makeText(activity, getString(R.string.msg_sold_out), Toast.LENGTH_SHORT).show();
             }
 
@@ -193,7 +195,7 @@ public class CartFragment extends Fragment {
     }
 
     private void GetOfflineCart() {
-        CartFragment.isDeliverable = false;
+        CartFragment.isDeliverable = true;
         Map<String, String> params = new HashMap<>();
         params.put(Constant.GET_VARIANTS_OFFLINE, Constant.GetVal);
         params.put(Constant.VARIANT_IDs, databaseHelper.getCartList().toString().replace("[", "").replace("]", "").replace("\"", ""));

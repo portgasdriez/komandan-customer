@@ -14,8 +14,8 @@
         android:contentDescription="@string/app_name" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
         android:layout_centerInParent="true"
         android:contentDescription="@string/app_name"
         android:minWidth="@dimen/_220sdp"

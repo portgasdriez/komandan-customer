@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
         session = new Session(activity);
         databaseHelper = new DatabaseHelper(activity);
 
-        toolbar.setBackgroundColor(ContextCompat.getColor(activity,R.color.colorPrimary));
+        toolbar.setBackgroundColor(ContextCompat.getColor(activity,R.color.white));
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
@@ -524,10 +524,10 @@ public class LoginActivity extends AppCompatActivity {
         params.put(Constant.PASSWORD, password);
         params.put(Constant.ADDRESS, address);
         params.put(Constant.DOB, dob);
-        params.put(Constant.IS_PREMIUM,"0");
-        params.put(Constant.COUNTRY_CODE, session.getData(Constant.COUNTRY_CODE));
+        params.put(Constant.IS_PREMIUM,"1");
+//        params.put(Constant.COUNTRY_CODE, session.getData(Constant.COUNTRY_CODE));
         params.put(Constant.FCM_ID, "" + session.getData(Constant.FCM_ID));
-        params.put(Constant.FRIEND_CODE, edtRefer.getText().toString().trim());
+//        params.put(Constant.FRIEND_CODE, edtRefer.getText().toString().trim());
         ApiConfig.RequestToVolley((result, response) -> {
             if (result) {
                 try {
@@ -709,7 +709,7 @@ public class LoginActivity extends AppCompatActivity {
                     jsonObject.getString(Constant.EMAIL),
                     jsonObject.getString(Constant.MOBILE),
                     password,
-                    jsonObject.getString(Constant.REFERRAL_CODE),
+//                    jsonObject.getString(Constant.REFERRAL_CODE),
                     jsonObject.getString(Constant.IS_PREMIUM));
 
             ApiConfig.AddMultipleProductInCart(session, activity, databaseHelper.getCartData());

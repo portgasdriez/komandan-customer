@@ -87,7 +87,7 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:textColor="@color/lightest_gray"
                     android:textAlignment="viewStart"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -208,6 +208,7 @@
                 <TextView
                     app:drawableEndCompat="@drawable/ic_right_arrow"
                     android:id="@+id/tvMenuWalletHistory"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"

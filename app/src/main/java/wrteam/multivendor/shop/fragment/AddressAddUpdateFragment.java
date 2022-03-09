@@ -80,13 +80,15 @@ import wrteam.multivendor.shop.model.Area;
 import wrteam.multivendor.shop.model.City;
 
 @SuppressLint({"NotifyDataSetChanged", "SetTextI18n", "ClickableViewAccessibility"})
-public class AddressAddUpdateFragment extends Fragment implements OnMapReadyCallback {
+public class AddressAddUpdateFragment extends Fragment
+//        implements OnMapReadyCallback
+{
     @SuppressLint("StaticFieldLeak")
     public static TextView tvCurrent;
     public static double latitude = 0.00, longitude = 0.00;
     public static Address address1;
-    public static SupportMapFragment mapFragment;
-    public static OnMapReadyCallback mapReadyCallback;
+//    public static SupportMapFragment mapFragment;
+//    public static OnMapReadyCallback mapReadyCallback;
     View root;
     public static String pincodeId = "0", areaId = "0", cityId = "0";
     ArrayList<City> cityArrayList;
@@ -144,7 +146,7 @@ public class AddressAddUpdateFragment extends Fragment implements OnMapReadyCall
         rdOffice = root.findViewById(R.id.rdOffice);
         rdOther = root.findViewById(R.id.rdOther);
         tvCurrent = root.findViewById(R.id.tvCurrent);
-        tvUpdate = root.findViewById(R.id.tvUpdate);
+//        tvUpdate = root.findViewById(R.id.tvUpdate);
 
         session = new Session(activity);
 
@@ -154,9 +156,9 @@ public class AddressAddUpdateFragment extends Fragment implements OnMapReadyCall
         pincodeId = session.getData(Constant.CITY_ID);
         areaId = session.getData(Constant.AREA_ID);
 
-        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        assert mapFragment != null;
-        mapFragment.getMapAsync(this);
+//        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+//        assert mapFragment != null;
+//        mapFragment.getMapAsync(this);
 
         Bundle bundle = getArguments();
         assert bundle != null;
@@ -176,7 +178,7 @@ public class AddressAddUpdateFragment extends Fragment implements OnMapReadyCall
             latitude = Double.parseDouble(address1.getLatitude());
             longitude = Double.parseDouble(address1.getLongitude());
             tvCurrent.setText(getString(R.string.location_1) + ApiConfig.getAddress(latitude, longitude, getActivity()));
-            mapFragment.getMapAsync(this);
+//            mapFragment.getMapAsync(this);
             SetData();
         } else {
             edtArea.setEnabled(false);
@@ -189,23 +191,23 @@ public class AddressAddUpdateFragment extends Fragment implements OnMapReadyCall
             edtAlternateMobile.requestFocus();
         }
 
-        mapReadyCallback = googleMap -> {
-            googleMap.clear();
-            LatLng latLng = new LatLng(latitude, longitude);
-            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            googleMap.addMarker(new MarkerOptions()
-                    .position(latLng)
-                    .draggable(true)
-                    .title(getString(R.string.current_location)));
-
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
-            googleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
-        };
+//        mapReadyCallback = googleMap -> {
+//            googleMap.clear();
+//            LatLng latLng = new LatLng(latitude, longitude);
+//            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//            googleMap.addMarker(new MarkerOptions()
+//                    .position(latLng)
+//                    .draggable(true)
+//                    .title(getString(R.string.current_location)));
+//
+//            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//
+//            googleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
+//        };
 
         btnSubmit.setOnClickListener(view -> AddUpdateAddress());
 
-        tvUpdate.setOnClickListener(view -> displayLocationSettingsRequest(activity));
+//        tvUpdate.setOnClickListener(view -> displayLocationSettingsRequest(activity));
 
         edtCity.setOnClickListener(v -> OpenDialog(activity, "city"));
 
@@ -437,37 +439,37 @@ public class AddressAddUpdateFragment extends Fragment implements OnMapReadyCall
         inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
 
-    @Override
-    public void onMapReady(@NotNull GoogleMap googleMap) {
-        double saveLatitude, saveLongitude;
-        if (For.equals("update")) {
-            btnSubmit.setText(getString(R.string.update));
-            assert getArguments() != null;
-            address1 = (Address) getArguments().getSerializable("model");
-            pincodeId = address1.getPincode_id();
-            areaId = address1.getArea_id();
-            latitude = Double.parseDouble(address1.getLatitude());
-            longitude = Double.parseDouble(address1.getLongitude());
-        }
-        if (latitude <= 0 || longitude <= 0) {
-            saveLatitude = Double.parseDouble(session.getCoordinates(Constant.LATITUDE));
-            saveLongitude = Double.parseDouble(session.getCoordinates(Constant.LONGITUDE));
-        } else {
-            saveLatitude = latitude;
-            saveLongitude = longitude;
-        }
-        googleMap.clear();
-
-        LatLng latLng = new LatLng(saveLatitude, saveLongitude);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions()
-                .position(latLng)
-                .draggable(true)
-                .title(getString(R.string.current_location)));
-
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
-    }
+//    @Override
+//    public void onMapReady(@NotNull GoogleMap googleMap) {
+//        double saveLatitude, saveLongitude;
+//        if (For.equals("update")) {
+//            btnSubmit.setText(getString(R.string.update));
+//            assert getArguments() != null;
+//            address1 = (Address) getArguments().getSerializable("model");
+//            pincodeId = address1.getPincode_id();
+//            areaId = address1.getArea_id();
+//            latitude = Double.parseDouble(address1.getLatitude());
+//            longitude = Double.parseDouble(address1.getLongitude());
+//        }
+//        if (latitude <= 0 || longitude <= 0) {
+//            saveLatitude = Double.parseDouble(session.getCoordinates(Constant.LATITUDE));
+//            saveLongitude = Double.parseDouble(session.getCoordinates(Constant.LONGITUDE));
+//        } else {
+//            saveLatitude = latitude;
+//            saveLongitude = longitude;
+//        }
+//        googleMap.clear();
+//
+//        LatLng latLng = new LatLng(saveLatitude, saveLongitude);
+//        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        googleMap.addMarker(new MarkerOptions()
+//                .position(latLng)
+//                .draggable(true)
+//                .title(getString(R.string.current_location)));
+//
+//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//        googleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
+//    }
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {

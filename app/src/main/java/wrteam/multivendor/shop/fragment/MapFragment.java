@@ -83,13 +83,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
             longitude = gpsTracker.getLongitude();
         }
 
-        btnUpdateLocation.setOnClickListener(view -> {
-            AddressAddUpdateFragment.address1.setLongitude("" + longitude);
-            AddressAddUpdateFragment.address1.setLatitude("" + latitude);
-            AddressAddUpdateFragment.tvCurrent.setText(getAddress(latitude, longitude, activity));
-            AddressAddUpdateFragment.mapFragment.getMapAsync(AddressAddUpdateFragment.mapReadyCallback);
-            MainActivity.fm.popBackStack();
-        });
+//        btnUpdateLocation.setOnClickListener(view -> {
+//            AddressAddUpdateFragment.address1.setLongitude("" + longitude);
+//            AddressAddUpdateFragment.address1.setLatitude("" + latitude);
+//            AddressAddUpdateFragment.tvCurrent.setText(getAddress(latitude, longitude, activity));
+//            AddressAddUpdateFragment.mapFragment.getMapAsync(AddressAddUpdateFragment.mapReadyCallback);
+//            MainActivity.fm.popBackStack();
+//        });
 
         mapReadyCallback = googleMap -> {
             googleMap.clear();

@@ -144,21 +144,21 @@ public class HomeFragment extends Fragment {
 //        }
 
 
-        tvTitleLocation.setOnClickListener(v -> {
-            MainActivity.pinCodeFragment = new PinCodeFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString(Constant.FROM, "home");
-            MainActivity.pinCodeFragment.setArguments(bundle);
-            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
-        });
+//        tvTitleLocation.setOnClickListener(v -> {
+//            MainActivity.pinCodeFragment = new PinCodeFragment();
+//            Bundle bundle = new Bundle();
+//            bundle.putString(Constant.FROM, "home");
+//            MainActivity.pinCodeFragment.setArguments(bundle);
+//            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
+//        });
 
-        tvLocation.setOnClickListener(v -> {
-            MainActivity.pinCodeFragment = new PinCodeFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString(Constant.FROM, "home");
-            MainActivity.pinCodeFragment.setArguments(bundle);
-            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
-        });
+//        tvLocation.setOnClickListener(v -> {
+//            MainActivity.pinCodeFragment = new PinCodeFragment();
+//            Bundle bundle = new Bundle();
+//            bundle.putString(Constant.FROM, "home");
+//            MainActivity.pinCodeFragment.setArguments(bundle);
+//            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
+//        });
 
         if (nestedScrollView != null) {
             nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
