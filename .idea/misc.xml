@@ -22,7 +22,7 @@
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/drawable/selector_favorite.xml" value="0.2135" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/drawable/selector_home.xml" value="0.2135" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/drawable/selector_person.xml" value="0.2135" />
-        <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/activity_welcome.xml" value="0.18" />
@@ -30,7 +30,7 @@
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/fragment_cart.xml" value="0.18" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/fragment_drawer.xml" value="0.67" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/fragment_home.xml" value="0.22" />
-        <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/fragment_pincode.xml" value="0.10597826086956522" />
+        <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/fragment_pincode.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/fragment_popup_premium_notif.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/fragment_product_detail.xml" value="0.22" />
         <entry key="..\:/Users/LENOVO/StudioProjects/Source/ProjectKoperasi/Komandan/Customer/app/src/main/res/layout/fragment_product_list.xml" value="0.36666666666666664" />

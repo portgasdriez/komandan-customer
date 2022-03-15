@@ -133,32 +133,31 @@ public class HomeFragment extends Fragment {
         lytBelowSellerOfferImages.setLayoutManager(new LinearLayoutManager(activity));
         lytBelowSellerOfferImages.setNestedScrollingEnabled(false);
 
-//        if (!session.getBoolean(Constant.GET_SELECTED_PINCODE)) {
-//            MainActivity.pinCodeFragment = new PinCodeFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putString(Constant.FROM, "home");
-//            MainActivity.pinCodeFragment.setArguments(bundle);
-//            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
-//        } else {
-//            tvLocation.setText(session.getData(Constant.GET_SELECTED_PINCODE_NAME));
-//        }
+        if (!session.getBoolean(Constant.GET_SELECTED_PINCODE)) {
+            MainActivity.pinCodeFragment = new PinCodeFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.FROM, "home");
+            MainActivity.pinCodeFragment.setArguments(bundle);
+            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
+        } else {
+            tvLocation.setText(session.getData(Constant.GET_SELECTED_PINCODE_NAME));
+        }
 
+        tvTitleLocation.setOnClickListener(v -> {
+            MainActivity.pinCodeFragment = new PinCodeFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.FROM, "home");
+            MainActivity.pinCodeFragment.setArguments(bundle);
+            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
+        });
 
-//        tvTitleLocation.setOnClickListener(v -> {
-//            MainActivity.pinCodeFragment = new PinCodeFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putString(Constant.FROM, "home");
-//            MainActivity.pinCodeFragment.setArguments(bundle);
-//            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
-//        });
-
-//        tvLocation.setOnClickListener(v -> {
-//            MainActivity.pinCodeFragment = new PinCodeFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putString(Constant.FROM, "home");
-//            MainActivity.pinCodeFragment.setArguments(bundle);
-//            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
-//        });
+        tvLocation.setOnClickListener(v -> {
+            MainActivity.pinCodeFragment = new PinCodeFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.FROM, "home");
+            MainActivity.pinCodeFragment.setArguments(bundle);
+            MainActivity.pinCodeFragment.show(MainActivity.fm, null);
+        });
 
         if (nestedScrollView != null) {
             nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
