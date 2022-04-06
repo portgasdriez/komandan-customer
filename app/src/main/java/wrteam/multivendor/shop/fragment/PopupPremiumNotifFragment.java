@@ -57,6 +57,8 @@ public class PopupPremiumNotifFragment extends DialogFragment {
         from = getArguments().getString(Constant.FROM);
         next = (TextView) root.findViewById(R.id.btNext);
         close = (ImageView) root.findViewById(R.id.close);
+        MainActivity.popupPremiumNotifFragment.setCancelable(false);
+//        MainActivity.popupPremiumNotifFragment.setCanceledOnTouchOutside(false);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

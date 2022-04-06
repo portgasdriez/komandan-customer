@@ -39,7 +39,7 @@ import wrteam.multivendor.shop.helper.Utils;
 
 public class DrawerFragment extends Fragment {
     View root;
-    public TextView tvName, tvMobile, tvMenuHome, tvMenuCart, tvMenuOrders, tvMenuChangePassword, tvMenuManageAddresses, tvMenuReferEarn, tvMenuContactUs, tvMenuAboutUs, tvMenuRateUs, tvMenuShareApp, tvMenuFAQ, tvMenuTermsConditions, tvMenuPrivacyPolicy, tvMenuLogout;
+    public TextView tvName, tvMobile, tvMenuHome,tvSimWajib, tvMenuCart, tvMenuOrders, tvMenuChangePassword, tvMenuManageAddresses, tvMenuReferEarn, tvMenuContactUs, tvMenuAboutUs, tvMenuRateUs, tvMenuShareApp, tvMenuFAQ, tvMenuTermsConditions, tvMenuPrivacyPolicy, tvMenuLogout;
     @SuppressLint("StaticFieldLeak")
     public static ImageView imgProfile;
     @SuppressLint("StaticFieldLeak")
@@ -83,7 +83,7 @@ public class DrawerFragment extends Fragment {
         tvMenuLogout = root.findViewById(R.id.tvMenuLogout);
         lytMenuGroup = root.findViewById(R.id.lytMenuGroup);
         lytProfile = root.findViewById(R.id.lytProfile);
-
+        tvSimWajib = root.findViewById(R.id.tvSimWajib);
         if (session.getBoolean(Constant.IS_USER_LOGIN)) {
             tvName.setText(session.getData(Constant.NAME));
             tvMobile.setText(session.getData(Constant.MOBILE));
@@ -113,6 +113,7 @@ public class DrawerFragment extends Fragment {
         }
 
         imgEditProfile.setOnClickListener(v -> MainActivity.fm.beginTransaction().add(R.id.container, new ProfileFragment()).addToBackStack(null).commit());
+        tvSimWajib.setOnClickListener(v -> MainActivity.fm.beginTransaction().add(R.id.container, new RiwayatSimWajibFragment()).addToBackStack(null).commit());
 
         lytProfile.setOnClickListener(v -> {
             if (!session.getBoolean(Constant.IS_USER_LOGIN)) {
@@ -152,6 +153,7 @@ public class DrawerFragment extends Fragment {
             fragment.setArguments(bundle);
             MainActivity.fm.beginTransaction().add(R.id.container, fragment).addToBackStack(null).commit();
         });
+
 
         tvMenuNotification.setOnClickListener(v -> MainActivity.fm.beginTransaction().add(R.id.container, new NotificationFragment()).addToBackStack(null).commit());
 

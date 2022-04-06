@@ -393,6 +393,20 @@ public class Constant {
     public static String BANK_CODE = "";
     public static String NOTES = "";
 
+  public static final String PEMBAYARAN_BULAN = "period";
+  public static final String BIAYA = "amount";
+  public static final String TANGGAL_JATUH_TEMPO = "billing_date";
+  public static final String TANGGAL_BAYAR = "payment_date";
+  public static final String JUMLAH_BAYAR = "high";
+  public static final String TAHUN = "years";
+  public static final String STATUS_PEMBAYARAN = "IS_STATUS_PAYMENT";
+
+  public static final String GET_SIMPANAN_WAJIB = "get_simpanan_wajib";
+  public static final String GET_SIMPANAN_WAJIB_URL = BaseUrl + "get-simpanan-wajib.php";
+
+  public static final String POST_SIMPANAN_WAJIB = "post-simpanan-wajib";
+  public static final String POST_SIMPANAN_WAJIB_URL = BaseUrl + "post-simpanan-wajib.php";
+
     public static String randomAlphaNumeric(int count) {
         StringBuilder builder = new StringBuilder();
         while (count-- != 0) {

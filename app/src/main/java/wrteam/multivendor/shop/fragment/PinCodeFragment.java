@@ -69,7 +69,7 @@ public class PinCodeFragment extends DialogFragment {
 
         assert getArguments() != null;
         from = getArguments().getString(Constant.FROM);
-
+        MainActivity.pinCodeFragment.setCancelable(false);
         searchView = root.findViewById(R.id.searchView);
         recyclerView = root.findViewById(R.id.recyclerView);
         scrollView = root.findViewById(R.id.scrollView);
